@@ -1,25 +1,45 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
-
-
 ## Loading and preprocessing the data
-
-
-
 ## What is mean total number of steps taken per day?
-
-
-
 ## What is the average daily activity pattern?
-
-
-
 ## Imputing missing values
-
-
-
 ## Are there differences in activity patterns between weekdays and weekends?
+
+#Reproducible Research - Peer Assessment 1
+## Load libraries and data
+###Load libraries
+```{r}
+library(ggplot2)
+```
+
+###Load the data for this project from the working directory
+
+```{r}
+activityData <- read.csv('activity.csv')
+```
+
+
+
+##What is mean total number of steps taken per day?
+
+###Calculate the number of steps taken per day
+
+```{r}
+stepsPerDay <- tapply(activityData$steps, activityData$date, sum, na.rm=TRUE)
+```
+
+###Make a histogram of the total number of steps taken each day
+
+```{r}
+qplot(stepsPerDay, xlab="Total steps per day", ylab="Frequency", binwidth=500)
+```
+
+###Calculate and report the mean and median of the total number of steps taken per day
+
+```{r}
+meanSteps <- mean(stepsPerDay)
+medianSteps <- median(stepsPerDay)
+```
+
+Mean = `r meanSteps`  
+Median = `r medianSteps`
+
